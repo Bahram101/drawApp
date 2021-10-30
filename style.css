@@ -117,3 +117,12 @@ a > img {
     width: 250px;
     height: 150px;
 }
+.blockRange{
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: 19px;
+}
+#resultRange{
+    width: 30px;   
+}

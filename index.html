@@ -86,11 +86,15 @@
                 <img src="./img/5.svg" alt="" onclick="changeTool('pencil')">
                 <img src="./img/9.svg" alt="" onclick="changeTool('brush')">
                 <img src="./img/11.svg" alt="" onclick="changeTool('marker')">
-                <img src="./img/8.svg" alt="">
+                <img src="./img/8.svg" alt="" onclick="generateSprayPoints('spray')">
                 <img src="./img/13.svg" onclick="changeTool('cleaner')" alt="">
                 <img src="./img/6.svg" alt="" onclick="">
                 <img src="./img/2.svg" alt="" onclick="changeTool('star')">
-                <input type="range" class="range" step="1" min="1" max="100">
+                <div class="blockRange">
+                    <input type="range" class="range" id="range" value="23" step="1" min="1" max="100">
+                    <span id="resultRange">23</span>
+                </div>
+                
             </div>
         </div>
     </div>

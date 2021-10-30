@@ -1,14 +1,14 @@
-// const canvas = document.getElementById("canvas");
-// const context = canvas.getContext("2d");
-
 let canvas = document.getElementById("drawingCanvas");
 let context = canvas.getContext("2d");
+const range = document.getElementById("range");
+const resultRange = document.getElementById("resultRange");
 canvas.width = canvas.offsetWidth;
 canvas.height = canvas.offsetHeight;
 context.strokeStyle = "black";
 context.lineWidth = 1;
 
 let starIcon = false;
+let sprayIcon = false;
 let isDrawing = false;
 let x = 0;
 let y = 0;
@@ -18,14 +18,19 @@ canvas.addEventListener("mousedown", (e) => {
     y = e.offsetY;
     if (starIcon) {
         isDrawing = false;
-        startDrawStar(x, y, 'red', 5);
+        startDrawStar(x, y, context.fillStyle, 5);
     } else {
         isDrawing = true;
     }
+    // if (sprayIcon) {
+    //     isDrawing = false;
+    //     generateSprayPoints(e);
+    // } else {
+    //     isDrawing = true;
+    // }
 });
 
 canvas.addEventListener("mousemove", (e) => {
-    console.log("isDrawing", isDrawing);
     if (isDrawing === true) {
         drawLine(
             context,
@@ -41,7 +46,7 @@ canvas.addEventListener("mousemove", (e) => {
     }
 });
 
-window.addEventListener("mouseup", (e) => {
+canvas.addEventListener("mouseup", (e) => {
     isDrawing = false;
 });
 
@@ -49,10 +54,36 @@ function drawLine(context, x1, y1, x2, y2, color, line) {
     context.beginPath();
     context.strokeStyle = color;
     context.lineWidth = line;
+    context.lineCap = 'round';
     context.moveTo(x1, y1);
     context.lineTo(x2, y2);
     context.stroke();
     context.closePath();
+}
+
+function startDrawStar(x, y, background, lineWidth) {
+    drawStar(x, y, 5, 60, 25, background, "gray", lineWidth);
+}
+
+function drawStar(centerX, centerY, points, outer, inner, fill, stroke, line) {
+    context.beginPath();
+    context.moveTo(centerX, centerY + outer);
+    for (var i = 0; i < 2 * points + 1; i++) {
+        var r = i % 2 == 0 ? outer : inner;
+        var a = (Math.PI * i) / points;
+        context.lineTo(centerX + r * Math.sin(a), centerY + r * Math.cos(a));
+    }
+    context.closePath();
+    context.fillStyle = fill;
+    context.fill();
+    context.strokeStyle = stroke;
+    context.lineWidth = line;
+    context.stroke();
+}
+
+function changeColor(color) {
+    context.strokeStyle = color;
+    context.fillStyle = color;
 }
 
 function changeTool(param) {
@@ -77,32 +108,39 @@ function changeTool(param) {
             break;
         case "star":
             starIcon = true;
-            // drawStar(centerX,centerY,points,outer,inner,fill,stroke,line);
+            break;
+        case "spray":
+            sprayIcon = true;
             break;
     }
 }
 
-function changeColor(color) {
-    context.strokeStyle = color;
-    context.fillStyle = color;
-}
+range.addEventListener("input", function () {
+    resultRange.innerHTML = this.value;
+    context.lineWidth = this.value;
+});
 
-function startDrawStar(x, y, background, lineWidth) {
-    drawStar(x, y, 5, 60, 25, background, "gray", lineWidth);
-}
+const generateSprayPoints = (event) => {
+    console.log("SPRAY");
+    console.log("CLIENT", event);
+    const amountOfPoints = context.lineWidth * 2;
 
-function drawStar(centerX, centerY, points, outer, inner, fill, stroke, line) {
-    context.beginPath();
-    context.moveTo(centerX, centerY + outer);
-    for (var i = 0; i < 2 * points + 1; i++) {
-        var r = i % 2 == 0 ? outer : inner;
-        var a = (Math.PI * i) / points;
-        context.lineTo(centerX + r * Math.sin(a), centerY + r * Math.cos(a));
+    for (let i = 0; i < amountOfPoints; i++) {
+        const offset = getRandomOffset(context.lineWidth * 2);
+        const x = event.clientX + offset.x;
+        const y = event.clientY + offset.y;
+
+        context.fillStyle = context.strokeStyle;
+        context.fillRect(x, y, 1, 1);
     }
-    context.closePath();
-    context.fillStyle = fill;
-    context.fill();
-    context.strokeStyle = stroke;
-    context.lineWidth = line;
-    context.stroke();
-}
+
+    function getRandomOffset(radius) {
+        const randomAngle = Math.random() * (2 * Math.PI);
+        const randomRadius = Math.random() * radius;
+
+        return {
+            x: Math.cos(randomAngle) * randomRadius,
+            y: Math.sin(randomRadius) * randomAngle,
+        };
+    }
+};
