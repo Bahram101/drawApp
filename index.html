@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paint</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="application">
+        <div class="CanvasContainer">
+            <canvas id="drawingCanvas"></canvas>
+        </div>
+
+        <div class="zoom">
+            <img class="zoom-plus" src="./img/plus.svg" alt="">
+            <img class="zoom-minus" src="./img/minus.svg" alt="">
+        </div>
+
+        <div class="save">
+            <a href="#" id="downloader" onclick="saveCanvas()" download="image.png">
+                <img class="zoom-minus" src="./img/printer.svg" alt="">
+            </a>
+            <a href="javascript:location.reload(true)">
+                <img class="zoom-plus" src="./img/trash.svg" alt="" style="width: 70px; height: 70px;">
+            </a>
+        </div>
+
+        <!-- <div class="brush">
+			<div class="" onclick="changeThickness(1, this)" style="background-color:#949494; width:15px;height:15px;">
+			</div>
+			<div class="" onclick="changeThickness(5, this)" style="background-color:#949494; width:30px;height:30px;">
+			</div>
+			<div class="" onclick="changeThickness(10, this)" style="background-color:#949494; width:54px;height:54px;">
+			</div>
+		</div> -->
+
+        <div class="bottom-wrapper">
+            <div class="color-pick">
+                <div class="" onclick="changeColor('rgb(244,234,15)', this)"
+                    style="background-color:rgb(244,234,15); width:60px;height:60px;"></div>
+                <div class="" onclick="changeColor('rgb(249,174,57)', this)"
+                    style="background-color:rgb(249,174,57); width:60px;height:60px;"></div>
+                <div class="" onclick="changeColor('rgb(240,90,39)', this)"
+                    style="background-color:rgb(240,90,39); width:60px;height:60px;"></div>
+                <div class="" onclick="changeColor('rgb(235,32,38)', this)"
+                    style="background-color:rgb(235,32,38); width:60px;height:60px;"></div>
+                <div class="" onclick="changeColor('#c0272c', this)"
+                    style="background-color:#c0272c; width:60px;height:60px;"></div>
+                <div class="" onclick="changeColor('#eb1e79', this)"
+                    style="background-color:#eb1e79; width:60px;height:60px;"></div>
+                <div class="" onclick="changeColor('#9c205f', this)"
+                    style="background-color:#9c205f; width:60px;height:60px;"></div>
+                <div class="" onclick="changeColor('#67308e', this)"
+                    style="background-color:#67308e; width:60px;height:60px;"></div>
+                <div class="" onclick="changeColor('#272360', this)"
+                    style="background-color:#272360; width:60px;height:60px;"></div>
+                <div class="" onclick="changeColor('#2e358d', this)"
+                    style="background-color:#2e358d; width:60px;height:60px;"></div>
+                <div class="" onclick="changeColor('#0772b8', this)"
+                    style="background-color:#0772b8; width:60px;height:60px;"></div>
+                <div class="" onclick="changeColor('#29a8df', this)"
+                    style="background-color:#29a8df; width:60px;height:60px;"></div>
+                <div class="" onclick="changeColor('#8bc441', this)"
+                    style="background-color:#8bc441; width:60px;height:60px;"></div>
+                <div class="" onclick="changeColor('#9c205f', this)"
+                    style="background-color:#9c205f; width:60px;height:60px;"></div>
+                <div class="" onclick="changeColor('#67308e', this)"
+                    style="background-color:#67308e; width:60px;height:60px;"></div>
+                <div class="" onclick="changeColor('#272360', this)"
+                    style="background-color:#272360; width:60px;height:60px;"></div>
+                <div class="" onclick="changeColor('#2e358d', this)"
+                    style="background-color:#2e358d; width:60px;height:60px;"></div>
+                <div class="" onclick="changeColor('#0772b8', this)"
+                    style="background-color:#0772b8; width:60px;height:60px;"></div>
+                <div class="" onclick="changeColor('#29a8df', this)"
+                    style="background-color:#29a8df; width:60px;height:60px;"></div>
+                <div class="" onclick="changeColor('#8bc441', this)"
+                    style="background-color:#8bc441; width:60px;height:60px;"></div>
+            </div>
+            <div class="Toolbar">
+                <img src="./img/5.svg" alt="" onclick="changeTool('pencil')">
+                <img src="./img/9.svg" alt="" onclick="changeTool('brush')">
+                <img src="./img/11.svg" alt="" onclick="changeTool('marker')">
+                <img src="./img/8.svg" alt="">
+                <img src="./img/13.svg" onclick="changeTool('cleaner')" alt="">
+                <img src="./img/6.svg" alt="" onclick="">
+                <img src="./img/2.svg" alt="" onclick="changeTool('star')">
+                <input type="range" class="range" step="1" min="1" max="100">
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

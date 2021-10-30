@@ -1,0 +1,119 @@
+body {
+    background: white;
+    padding: 0px;
+    margin: 0px;
+    overflow: hidden;
+}
+.Toolbar {
+    font-family: "Trebuchet MS";
+    font-size: 14px;
+    font-variant: small-caps;
+    text-align: center;
+    display: flex;
+    width: 100%;
+    position: relative;
+    bottom: 0px;
+    justify-content: center;
+}
+.Toolbar > img {
+    width: 50px;
+    height: 60px;
+    margin: 10px 30px;
+}
+.Toolbar img:hover {
+    cursor:pointer;
+}
+.color-pick {
+    font-family: "Trebuchet MS";
+    font-size: 14px;
+    font-variant: small-caps;
+    text-align: center;
+    display: flex;
+    width: 100%;
+    position: relative;
+    bottom: 0px;
+    justify-content: center;
+}
+
+.color-pick div{
+    transition:0.1s;
+}
+
+.color-pick  div:hover{
+    cursor: pointer;
+    transform:translateY(-7px);
+}
+.color-pick button {
+    padding: 6px;
+    margin: 7px 2px;
+    font-variant: normal;
+    font-size: 12px;
+}
+.color-pick > div {
+    margin: 10px auto;
+    border-radius: 50%;
+}
+.CanvasContainer {
+    clear: both;
+}
+.brush > div {
+    margin: 0 8px;
+    border-radius: 50%;
+}
+.brush {
+    position: absolute;
+    top: 30vh;
+    left: 3px;
+    align-items: center;
+}
+canvas {
+    width: 100vw;
+    height: calc(100vh - 150px);
+}
+
+img {
+}
+
+img:hover {
+}
+.save {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    display: flex;
+}
+a > img {
+    width: 70px;
+    height: 70px;
+}
+.zoom {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+.zoom > img {
+    width: 50px;
+    height: 50px;
+}
+
+.Selected {
+    box-shadow: 0 0 10px rgb(0 220 255);
+}
+.Toolbar > .Selected {
+    background: rgb(0 220 255 / 62%);
+    border-radius: 30px;
+}
+.bottom-wrapper {
+    background: url(tool_texture.jpg);
+    bottom: 0px;
+    position: fixed;
+    width: 100%;
+}
+#savedCopyContainer {
+    display: none;
+}
+
+#savedCopyContainer img {
+    width: 250px;
+    height: 150px;
+}
